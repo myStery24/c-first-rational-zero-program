@@ -68,7 +68,7 @@ void testp(int p){
 	for(int i = 1; i <= constantTerm; i++) {
     //to find factor
 		if(constantTerm % i == 0){
-      negative_p = -i; // to get the negative(-) value of p/q
+			negative_p = -i; // to get the negative(-) value of p/q
 			printf("\n%d\n%d", i, negative_p);
 			possiblezero[j] = i;
 			possiblezero[j + 1] = negative_p;
