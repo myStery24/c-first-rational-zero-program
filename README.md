@@ -5,6 +5,8 @@ Algebra Semester 1 2020/2021 Group Assignment
 ---
 Using C, write a program to find the first rational zero of a polynomial 𝑎𝑥^3 + 𝑏𝑥^2 + 𝑐𝑥 + 𝑑. The output should be as shown in Figure Q3. Use the following information for the program:
 
+![alt text](https://github.com/myStery24/first-rational-zero-program/blob/main/example_output.png)
+
 •	𝑎 is fixed to 1
 
 •	Once the first rational zero is found, the integer will be displayed and program will be stopped.
