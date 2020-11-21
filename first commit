@@ -1,0 +1,101 @@
+/*
+ * Algebra Group Assignment Part B
+ *
+ * Using C, write a program to find the first rational zero of a polynomial ax^3 + bx^2 + cx + d. 
+ * The output should be as shown in Figure Q3. 
+ *
+ * Use the following information for the program:
+ * 1) a is fixed to 1
+ * 2) Once the first rational zero is found, the integer will be displayed and program will be stopped.
+ * 3) If no rational zero is found, a message "No rational zero found!" will be displayed.
+ *
+ * Note: Test your program with at least 3 cubic polynomials and show samples of output in your report.
+ *
+ * Author: Lee Zi Hui
+ * Given date: 11/14/2020
+ * Last edited: 11/15/2020 05:32PM @ line 48
+ */
+ 
+#include <stdio.h>
+#include <stdlib.h>
+
+int a = 1, b, c, d;
+
+// a menu asking user to enter value for b, c and d
+void menu() {
+	printf("Insert value of b, c and d: ");
+	printf("\nb: "); // input value for b
+	scanf("%d", &b);
+	printf("d: "); // input value for c
+	scanf("%d", &c);
+	printf("d: "); // input value for d, d is constant term
+	scanf("%d", &d);
+}
+
+/* find factor of the constant term and divide by leading coefficient
+ * p = value of d
+ */
+int pOverQ(int p) {
+	int i;
+	int absConstantTerm = abs(p);
+	
+	for(i = 1; i <= absConstantTerm ; i++) {
+		if(absConstantTerm  % i == 0) {
+			printf("%d\n-%d\n", i, i); // +/- p/q
+		}
+	}	
+}
+
+// logic error at line 58
+void displayResult(int a, int b, int c, int d) {
+	int i, remainder;
+	for(i = 1; i <= d; i++) {
+		if(d % i == 0) {
+			remainder = ((a*i*i*i) + (b*i*i) + (c*i) + d);
+			if (remainder == 0) {
+				printf("\nThe first rational zero = %d\n", i);
+				break;
+			} else {
+				printf("No rational zero found!");
+			}
+		} 	
+	}
+}
+
+int main() {
+	
+	int rZ, remainder, tries;
+	
+    menu(); // function call
+    
+	printf("\nThe polynomial is 1x^3 + %dx^2 + %dx + %d", b, c , d); // a is fixed to 1, display in this format: ax^3 + bx^2 + cx + d
+	printf("\n-------------------------\n\n"); // border line
+	
+    printf("p = %d\n", d); // display constant term
+    printf("q = 1"); // leading coefficient is fixed to 1
+  
+    printf("\n\nPossible rational zeros are: \n---\n\n");
+    pOverQ(d); // function call to display the possible rational zeros
+    
+    //displayResult(a, b, c, d);
+    
+    // line 81 - 93 (logic error)
+    do {
+    	printf("\nHow many possible rational zeros to test?: ");
+    	scanf("%d", &tries);
+    	for (tries; tries != 0; --tries) {
+    		printf("Enter the possible rational zeros: ");
+    		scanf("%d", &rZ);
+    		remainder = ((a*rZ*rZ*rZ) + (b*rZ*rZ) + (c*rZ) + d);
+    		if (remainder == 0) {
+				printf("\nThe first rational zero = %d\n", rZ);
+				break;
+			}
+			if (tries == 0) {
+				printf("No rational zero found!");
+			} 
+    	} 
+	}while (tries > 0);
+
+    return 0;
+}
